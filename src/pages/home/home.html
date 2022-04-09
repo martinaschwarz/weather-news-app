@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <!-- display the app title -->
+    <ion-title>G00387926</ion-title>
+    <ion-buttons end>
+      <!-- display Settings icon calling showSettings() function when clicked, to navigate to Settings page -->
+      <button ion-button (click)="showSettings()">
+        <ion-icon end name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- ion refresher code block to refresh the content on the page -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher> 
+  <!-- display mainTitle; content depending on whether location was found or not -->
+  <h1>{{ mainTitle }}</h1>
+  <!-- "hidden" attribute on page content to enable hiding content if location not found -->
+  <div [hidden]="hidden">
+    <br>
+    <!-- display the country flag, city and country name, if location was found -->
+    <div style="display:inline-flex; float:left">
+      <div style="min-width:120px"><img src="{{ flag }}" width="100px"/></div>
+      <div><h1>{{ city }}, {{ country }}</h1></div>
+    </div>
+    <ion-list>
+      <ion-item>
+        <hr>
+        <!-- display the temperature and limit decimal points to 3 -->
+        <h2><b>Temperature</b></h2>
+        <br>
+        <h1>{{ temperature | number : '1.0-3' }} {{ unit }}</h1>
+      </ion-item>
+      <ion-item>
+        <!-- display the weather description and icon -->
+        <h2><b>Weather</b></h2>
+        <br>
+        <h1>{{ weatherDesc }}</h1>
+        <br>
+        <img src="https://www.weatherbit.io/static/img/icons/{{ weatherIcon }}.png"/>
+      </ion-item>
+      <ion-item>
+        <!-- display the wind direction -->
+        <h2><b>Wind from:</b></h2>
+        <br>
+        <h1>{{ wind }}</h1>
+      </ion-item>
+    </ion-list>
+    <hr>
+    <br>
+    <!-- display News button calling showNews() function when clicked, to navigate to News page -->
+    <button ion-button block color="primary" (click)="showNews()">News</button>
+  </div>
+</ion-content>

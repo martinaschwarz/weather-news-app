@@ -1,0 +1,10 @@
+page-news {
+    // add some extra space around cards
+    .card-md {
+        margin-top: 20px;
+    }
+    // don't add text decorations to links
+    a {
+        text-decoration: none;
+    }
+}

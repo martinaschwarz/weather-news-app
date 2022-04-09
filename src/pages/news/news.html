@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>News</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- ion refresher code block to refresh the content on the page -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher> 
+  <!-- display mainTitle; content depending on whether there are stories to display -->
+  <h1>{{ mainTitle }}</h1>
+  <!-- display an ion card for each news story, set limit to 5 -->
+  <ion-card *ngFor="let item of newsFeed | slice:0:5">
+    <!-- link to the original story when clicking the card -->
+    <a [href]="item.url">
+      <!-- display image for the news story -->
+      <ion-card-content>
+      <ion-thumbnail>
+        <img [src]="item.urlToImage"/>
+      </ion-thumbnail>
+    </ion-card-content>
+    <!-- display news title and description -->
+    <ion-card-content>
+      <h2><b>{{ item.title }}</b></h2>
+      {{ item.description }}
+    </ion-card-content></a>
+  </ion-card>
+</ion-content>
+
